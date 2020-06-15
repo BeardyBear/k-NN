@@ -90,7 +90,7 @@ JNIEXPORT void JNICALL Java_com_amazon_opendistroforelasticsearch_knn_index_v173
     Space<float>* space = NULL;
     ObjectVector dataset;
     Index<float>* index = NULL;
-    int* object_ids = NULL;
+    jint* object_ids = NULL;
 
     try {
         const char *spaceTypeCStr = env->GetStringUTFChars(spaceType, 0);

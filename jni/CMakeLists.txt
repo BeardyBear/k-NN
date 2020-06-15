@@ -37,6 +37,7 @@ endif ()
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/nmslib/similarity_search EXCLUDE_FROM_ALL)
 
 # Set OS specific variables
+
 if (${CMAKE_SYSTEM_NAME} STREQUAL Darwin)
     set(CMAKE_MACOSX_RPATH 1)
     set(JVM_OS_TYPE darwin)
@@ -45,8 +46,10 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
     set(JVM_OS_TYPE linux)
     set(LIB_EXT .so)
 else()
-    message( FATAL_ERROR "Unable to run on system: ${CMAKE_SYSTEM_NAME}")
+    set(JVM_OS_TYPE windows)
+    set(LIB_EXT .dll)
 endif()
+
 
 # Compile the library
 add_library(${KNN_INDEX} SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/com_amazon_opendistroforelasticsearch_knn_index_v1736_KNNIndex.cpp)
